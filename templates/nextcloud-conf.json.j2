@@ -1,0 +1,290 @@
+{
+    "system": {
+        "passwordsalt": "{{ nextcloud_passwordsalt }}",
+        "secret": "{{ nextcloud_secret }}",
+        "trusted_domains": [
+            "{{ app_name }}.{{ external_domain }}"
+        ],
+        "datadirectory": "\/var\/{{ app_name }}\/data",
+        "dbtype": "mysql",
+        "version": "16.0.3.0",
+        "overwrite.cli.url": "https:\/\/{{ external_domain }}",
+        "dbname": "{{ app_name }}",
+        "dbhost": "{{ app_name }}-db.{{ internal_domain }}",
+        "dbport": "",
+        "dbtableprefix": "oc_",
+        "mysql.utf8mb4": true,
+        "dbuser": "{{ nextcloud_dbuser }}",
+        "dbpassword": "{{ nextcloud_dbpassword }}",
+        "installed": true,
+        "instanceid": "",
+        "ldapIgnoreNamingRules": false,
+        "ldapProviderFactory": "OCA\\User_LDAP\\LDAPProviderFactory",
+        "overwritehost": "{{ app_name }}.{{ external_domain }}",
+        "overwriteprotocol": "https",
+        "memcache.distributed": "\\OC\\Memcache\\Redis",
+        "memcache.locking": "\\OC\\Memcache\\Redis",
+        "filelocking.enabled": "true",
+        "redis": {
+            "host": "{{ redis_host }}",
+            "port": "{{ redis_port }}",
+            "timeout": "1.5"
+        },
+        "csrf.disabled": "false",
+        "filesystem_check_changes": "1"
+    },
+    "apps": {
+        "accessibility": {
+            "enabled": "yes",
+            "installed_version": "1.2.0",
+            "types": ""
+        },
+        "activity": {
+            "enabled": "yes",
+            "installed_version": "2.9.1",
+            "types": "filesystem"
+        },
+        "backgroundjob": {
+            "lastjob": "19"
+        },
+        "bruteForce": {
+            "whitelist_1": "{{ whitelist_1 }}",
+            "whitelist_2": "{{ whitelist_2 }}",
+            "whitelist_3": "{{ whitelist_3 }}"
+        },
+        "cloud_federation_api": {
+            "enabled": "yes",
+            "installed_version": "0.2.0",
+            "types": "filesystem"
+        },
+        "comments": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "logging"
+        },
+        "core": {
+            "installedat": "1570694511.5532",
+            "lastcron": "1589780263",
+            "lastupdateResult": "{\"version\":\"16.0.10.2\",\"versionstring\":\"Nextcloud 16.0.10\",\"url\":\"https:\\\/\\\/download.nextcloud.com\\\/server\\\/releases\\\/nextcloud-16.0.10.zip\",\"web\":\"https:\\\/\\\/docs.nextcloud.com\\\/server\\\/16\\\/admin_manual\\\/maintenance\\\/upgrade.html\",\"changes\":\"https:\\\/\\\/updates.nextcloud.com\\\/changelog_server\\\/?version=16.0.10\",\"autoupdater\":\"1\",\"eol\":\"0\"}",
+            "lastupdatedat": "1589779305",
+            "public_files": "files_sharing\/public.php",
+            "public_webdav": "dav\/appinfo\/v1\/publicwebdav.php",
+            "scss.variables": "c56f3e52ca21a32ed9fd299f482ae5be",
+            "shareapi_allow_public_upload": "no",
+            "shareapi_default_permission_cancreate": "yes",
+            "shareapi_default_permissions": "31",
+            "vendor": "nextcloud"
+        },
+        "dav": {
+            "enabled": "yes",
+            "installed_version": "1.9.2",
+            "types": "filesystem"
+        },
+        "federatedfilesharing": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": ""
+        },
+        "federation": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "authentication"
+        },
+        "files": {
+            "cronjob_scan_files": "500",
+            "default_quota": "5 GB",
+            "enabled": "yes",
+            "installed_version": "1.11.0",
+            "types": "filesystem"
+        },
+        "files_pdfviewer": {
+            "enabled": "yes",
+            "installed_version": "1.5.0",
+            "types": ""
+        },
+        "files_rightclick": {
+            "enabled": "yes",
+            "installed_version": "0.13.0",
+            "types": ""
+        },
+        "files_sharing": {
+            "enabled": "yes",
+            "installed_version": "1.8.0",
+            "types": "filesystem"
+        },
+        "files_texteditor": {
+            "enabled": "yes",
+            "installed_version": "2.8.0",
+            "types": ""
+        },
+        "files_trashbin": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "filesystem,dav"
+        },
+        "files_versions": {
+            "enabled": "yes",
+            "installed_version": "1.9.0",
+            "types": "filesystem,dav"
+        },
+        "files_videoplayer": {
+            "enabled": "yes",
+            "installed_version": "1.5.0",
+            "types": ""
+        },
+        "firstrunwizard": {
+            "enabled": "yes",
+            "installed_version": "2.5.0",
+            "types": "logging"
+        },
+        "gallery": {
+            "enabled": "yes",
+            "installed_version": "18.3.0",
+            "types": ""
+        },
+        "logreader": {
+            "enabled": "yes",
+            "installed_version": "2.1.0",
+            "types": ""
+        },
+        "lookup_server_connector": {
+            "enabled": "yes",
+            "installed_version": "1.4.0",
+            "types": "authentication"
+        },
+        "nextcloud_announcements": {
+            "enabled": "yes",
+            "installed_version": "1.5.0",
+            "pub_date": "Thu, 24 Oct 2019 00:00:00 +0200",
+            "types": "logging"
+        },
+        "notifications": {
+            "enabled": "yes",
+            "installed_version": "2.4.1",
+            "types": "logging"
+        },
+        "oauth2": {
+            "enabled": "yes",
+            "installed_version": "1.4.2",
+            "types": "authentication"
+        },
+        "password_policy": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": ""
+        },
+        "privacy": {
+            "enabled": "yes",
+            "fullDiskEncryptionEnabled": "1",
+            "installed_version": "1.0.0",
+            "readableLocation": "gb",
+            "types": ""
+        },
+        "provisioning_api": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "prevent_group_restriction"
+        },
+        "recommendations": {
+            "enabled": "yes",
+            "installed_version": "0.4.0",
+            "types": ""
+        },
+        "serverinfo": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": ""
+        },
+        "sharebymail": {
+            "enabled": "yes",
+            "enforcePasswordProtection": "yes",
+            "installed_version": "1.6.0",
+            "types": "filesystem"
+        },
+        "support": {
+            "enabled": "yes",
+            "installed_version": "1.0.0",
+            "types": ""
+        },
+        "survey_client": {
+            "enabled": "yes",
+            "installed_version": "1.4.0",
+            "types": ""
+        },
+        "systemtags": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "logging"
+        },
+        "theming": {
+            "backgroundMime": "backgroundColor",
+            "cachebuster": "2",
+            "enabled": "yes",
+            "installed_version": "1.7.0",
+            "types": "logging"
+        },
+        "twofactor_backupcodes": {
+            "enabled": "yes",
+            "installed_version": "1.5.0",
+            "types": ""
+        },
+        "twofactor_totp": {
+            "enabled": "yes",
+            "installed_version": "3.0.1",
+            "types": ""
+        },
+        "updatenotification": {
+            "core": "16.0.10.2",
+            "enabled": "yes",
+            "files_rightclick": "0.15.1",
+            "files_texteditor": "2.11.0",
+            "installed_version": "1.6.0",
+            "types": "",
+            "update_check_errors": "0"
+        },
+        "user_ldap": {
+            "cleanUpJobOffset": "1100",
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "s01_lastChange": "1589607346",
+            "s01has_memberof_filter_support": "1",
+            "s01ldap_agent_password": "{{ nextcloud_s01ldap_agent_password }}",
+            "s01ldap_base": "{{ fileshare_user_base }}\n{{ standard_user_base }}",
+            "s01ldap_base_groups": "{{ fileshare_base_groups }}",
+            "s01ldap_base_users": "{{ standard_user_base }}",
+            "s01ldap_cache_ttl": "600",
+            "s01ldap_configuration_active": "1",
+            "s01ldap_display_name": "cn",
+            "s01ldap_dn": "{{ ldap_user }}",
+            "s01ldap_email_attr": "mail",
+            "s01ldap_experienced_admin": "0",
+            "s01ldap_group_filter": "(|(cn={{ fs_group_prefix }}-WMT-RW)(cn={{ fs_group_prefix }}-CFO-R)(cn={{ fs_group_prefix }}-BENCH-DEBS-R)(cn={{ fs_group_prefix }}-BENCH-DEBS-RW)(cn={{ fs_group_prefix }}-BGSW-DEBS-RW)(cn={{ fs_group_prefix }}-CGM-DEBS-RW)(cn={{ fs_group_prefix }}-CL-DEBS-R)(cn={{ fs_group_prefix }}-CL-DEBS-RW)(cn={{ fs_group_prefix }}-DDC-DEBS-R)(cn={{ fs_group_prefix }}-DDC-DEBS-RW)(cn={{ fs_group_prefix }}-DLNR-DEBS-R)(cn={{ fs_group_prefix }}-DLNR-DEBS-RW)(cn={{ fs_group_prefix }}-DTV-DEBS-R)(cn={{ fs_group_prefix }}-DTV-DEBS-RW)(cn={{ fs_group_prefix }}-EPP-NPS-R)(cn={{ fs_group_prefix }}-EPP-NPS-RW)(cn={{ fs_group_prefix }}-Essex-DEBS-R)(cn={{ fs_group_prefix }}-Essex-DEBS-RW)(cn={{ fs_group_prefix }}-HLNY-DEBS-R)(cn={{ fs_group_prefix }}-HLNY-DEBS-RW)(cn={{ fs_group_prefix }}-Hampshire-DEBS-RW)(cn={{ fs_group_prefix }}-KSS-DEBS-RW)(cn={{ fs_group_prefix }}-LONDON-DEBS-R)(cn={{ fs_group_prefix }}-LONDON-DEBS-RW)(cn={{ fs_group_prefix }}-London-NPS-R)(cn={{ fs_group_prefix }}-London-NPS-RW)(cn={{ fs_group_prefix }}-MISC-DEBS-R)(cn={{ fs_group_prefix }}-MISC-DEBS-RW)(cn={{ fs_group_prefix }}-Merseyside-DEBS-RW)(cn={{ fs_group_prefix }}-Midlands-NPS-R)(cn={{ fs_group_prefix }}-Midlands-NPS-RW)(cn={{ fs_group_prefix }}-NS-DEBS-R)(cn={{ fs_group_prefix }}-NS-DEBS-RW)(cn={{ fs_group_prefix }}-NorthEast-NPS-R)(cn={{ fs_group_prefix }}-NorthEast-NPS-RW)(cn={{ fs_group_prefix }}-NorthWest-NPS-R)(cn={{ fs_group_prefix }}-NorthWest-NPS-RW)(cn={{ fs_group_prefix }}-Northumbria-DEBS-RW)(cn={{ fs_group_prefix }}-PPAS-NPS-R)(cn={{ fs_group_prefix }}-PPAS-NPS-RW)(cn={{ fs_group_prefix }}-SWM-DEBS-R)(cn={{ fs_group_prefix }}-SWM-DEBS-RW)(cn={{ fs_group_prefix }}-South-Yorkshire-DEBS-R)(cn={{ fs_group_prefix }}-South-Yorkshire-DEBS-RW)(cn={{ fs_group_prefix }}-SouthEastandEastern-NPS-R)(cn={{ fs_group_prefix }}-SouthEastandEastern-NPS-RW)(cn={{ fs_group_prefix }}-SouthWestandSouthCentral-NPS-R)(cn={{ fs_group_prefix }}-SouthWestandSouthCentral-NPS-RW)(cn={{ fs_group_prefix }}-Thames-DEBS-R)(cn={{ fs_group_prefix }}-Thames-DEBS-RW)(cn={{ fs_group_prefix }}-WWM-DEBS-RW)(cn={{ fs_group_prefix }}-Wales-DEBS-RW)(cn={{ fs_group_prefix }}-Wales-NPS-R)(cn={{ fs_group_prefix }}-Wales-NPS-RW)(cn={{ fs_group_prefix }}-West-Yorkshire-DEBS-R)(cn={{ fs_group_prefix }}-West-Yorkshire-DEBS-RW)(cn={{ fs_group_prefix }}-MIS-R))",
+            "s01ldap_group_filter_mode": "1",
+            "s01ldap_group_member_assoc_attribute": "member",
+            "s01ldap_groupfilter_groups": "{{ fs_group_prefix }}-BENCH-DEBS-R\n{{ fs_group_prefix }}-BENCH-DEBS-RW\n{{ fs_group_prefix }}-BGSW-DEBS-RW\n{{ fs_group_prefix }}-CFO-R\n{{ fs_group_prefix }}-CGM-DEBS-RW\n{{ fs_group_prefix }}-CL-DEBS-R\n{{ fs_group_prefix }}-CL-DEBS-RW\n{{ fs_group_prefix }}-DDC-DEBS-R\n{{ fs_group_prefix }}-DDC-DEBS-RW\n{{ fs_group_prefix }}-DLNR-DEBS-R\n{{ fs_group_prefix }}-DLNR-DEBS-RW\n{{ fs_group_prefix }}-DTV-DEBS-R\n{{ fs_group_prefix }}-DTV-DEBS-RW\n{{ fs_group_prefix }}-Essex-DEBS-R\n{{ fs_group_prefix }}-Essex-DEBS-RW\n{{ fs_group_prefix }}-HLNY-DEBS-R\n{{ fs_group_prefix }}-HLNY-DEBS-RW\n{{ fs_group_prefix }}-Hampshire-DEBS-RW\n{{ fs_group_prefix }}-KSS-DEBS-RW\n{{ fs_group_prefix }}-LONDON-DEBS-R\n{{ fs_group_prefix }}-LONDON-DEBS-RW\n{{ fs_group_prefix }}-Merseyside-DEBS-RW\n{{ fs_group_prefix }}-NS-DEBS-R\n{{ fs_group_prefix }}-NS-DEBS-RW\n{{ fs_group_prefix }}-Northumbria-DEBS-RW\n{{ fs_group_prefix }}-SWM-DEBS-R\n{{ fs_group_prefix }}-SWM-DEBS-RW\n{{ fs_group_prefix }}-South-Yorkshire-DEBS-R\n{{ fs_group_prefix }}-South-Yorkshire-DEBS-RW\n{{ fs_group_prefix }}-Thames-DEBS-R\n{{ fs_group_prefix }}-Thames-DEBS-RW\n{{ fs_group_prefix }}-WMT-RW\n{{ fs_group_prefix }}-WWM-DEBS-RW\n{{ fs_group_prefix }}-Wales-DEBS-RW\n{{ fs_group_prefix }}-West-Yorkshire-DEBS-R\n{{ fs_group_prefix }}-West-Yorkshire-DEBS-RW",
+            "s01ldap_groupfilter_objectclass": "",
+            "s01ldap_host": "{{ ldap_host }}",
+            "s01ldap_login_filter": "(&(&(|(objectclass=inetOrgPerson)))(|(mailPrimaryAddress=%uid)(mail=%uid)))",
+            "s01ldap_login_filter_mode": "1",
+            "s01ldap_loginfilter_attributes": "",
+            "s01ldap_loginfilter_email": "1",
+            "s01ldap_loginfilter_username": "0",
+            "s01ldap_port": "389",
+            "s01ldap_user_filter_mode": "1",
+            "s01ldap_userfilter_groups": "",
+            "s01ldap_userfilter_objectclass": "inetOrgPerson",
+            "s01ldap_userlist_filter": "(|(memberof=cn={{ fs_group_prefix }}-BENCH-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-BENCH-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-BGSW-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-CFO-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-CGM-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-CL-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-CL-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DDC-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DDC-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DLNR-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DLNR-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DTV-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-DTV-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-EPP-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-EPP-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Essex-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Essex-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-HLNY-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-HLNY-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Hampshire-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-KSS-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-LONDON-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-LONDON-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-London-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-London-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-MISC-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-MISC-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Merseyside-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Midlands-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Midlands-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NS-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NS-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NorthEast-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NorthEast-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NorthWest-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-NorthWest-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Northumbria-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-PPAS-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-PPAS-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SWM-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SWM-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-South-Yorkshire-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-South-Yorkshire-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SouthEastandEastern-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SouthEastandEastern-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SouthWestandSouthCentral-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-SouthWestandSouthCentral-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Thames-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Thames-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-WMT-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-WWM-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Wales-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Wales-NPS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-Wales-NPS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-West-Yorkshire-DEBS-R,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-West-Yorkshire-DEBS-RW,{{ fileshare_base_groups }})(memberof=cn={{ fs_group_prefix }}-MIS-R,{{ fileshare_base_groups }}))",
+            "types": "authentication"
+        },
+        "viewer": {
+            "enabled": "yes",
+            "installed_version": "1.0.0",
+            "types": ""
+        },
+        "workflowengine": {
+            "enabled": "yes",
+            "installed_version": "1.6.0",
+            "types": "filesystem"
+        }
+    }
+}

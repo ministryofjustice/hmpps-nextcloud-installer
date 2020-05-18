@@ -1,0 +1,15 @@
+---
+
+- name: Create our Nextcloud config file for import
+  template:
+    src: "{{ role_path }}/templates/nextcloud-conf.json.j2"
+    dest: "/usr/share/httpd/{{ NEXTCLOUD_CONF }}"
+    owner: "{{ web_user }}"
+    mode: "0644"
+    group: "{{ web_user}}"
+
+- name: Create our Nextcloud importer script
+  template:
+    src: "{{ role_path }}/templates/import-config.sh.j2"
+    dest: "/root/import-config.sh"
+    mode: u+x

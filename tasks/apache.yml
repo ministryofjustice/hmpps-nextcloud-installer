@@ -2,8 +2,8 @@
 
 - name: Create our apache config files
   template:
-    src: "{{ role_path }}/templates/nextcloud.conf"
-    dest: "/etc/httpd/conf.d"
+    src: "{{ role_path }}/templates/apache-nextcloud.conf"
+    dest: "/etc/httpd/conf.d/nextcloud.conf"
     owner: "root"
     mode: "0644"
     group: "root"

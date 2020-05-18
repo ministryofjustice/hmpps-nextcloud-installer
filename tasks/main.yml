@@ -2,3 +2,9 @@
 
 - name: Configure apache
   include: apache.yml
+
+- name: Add our nextcloud config
+  include: create-config.yml
+
+- name: Add our shared folders
+  include: shared_folders.yml

@@ -1,0 +1,77 @@
+---
+
+- name: create our CRC shared folders
+  file:
+    path: "{{ data_dir }}/{{ nextcloud_admin }}{{ shared_files_root }}{{ crc_files }}{{ item }}"
+    state: directory
+    group: apache
+    mode: "0770"
+    owner: apache
+    recurse: yes
+  with_items:
+    - 'bench'
+    - 'bgsw'
+    - 'cgm'
+    - 'cl'
+    - 'ddc'
+    - 'dlnr'
+    - 'dtv'
+    - 'essex'
+    - 'hampshire'
+    - 'hlny'
+    - 'kss'
+    - 'london'
+    - 'merseyside'
+    - 'misc'
+    - 'northumbria'
+    - 'ns'
+    - 'south-yorkshire'
+    - 'swm'
+    - 'thames'
+    - 'wales'
+    - 'west-yorkshire'
+    - 'wwm'
+
+
+- name: create our NPS shared folders
+  file:
+    path: "{{ data_dir }}/{{ nextcloud_admin }}{{ shared_files_root }}{{ nps_files }}{{ item }}"
+    state: directory
+    group: apache
+    mode: "0770"
+    owner: apache
+    recurse: yes
+  with_items:
+    - 'NorthWest'
+    - 'NorthEast'
+    - 'Wales'
+    - 'Midlands'
+    - 'SouthWestandSouthCentral'
+    - 'SouthEastandEastern'
+    - 'London'
+    - 'EPP'
+    - 'PPAS'
+
+
+- name: create our National shared folders
+  file:
+    path: "{{ data_dir }}/{{ nextcloud_admin }}{{ shared_files_root }}{{ national_files }}{{ item }}"
+    state: directory
+    group: apache
+    mode: "0770"
+    owner: apache
+    recurse: yes
+  with_items:
+    - 'cfo'
+    - 'wmt'
+
+- name: create our other top level shared folders
+  file:
+    path: "{{ data_dir }}/{{ nextcloud_admin }}{{ shared_files_root }}{{ item }}"
+    state: directory
+    group: apache
+    mode: "0770"
+    owner: apache
+    recurse: yes
+  with_items:
+    - 'nart'

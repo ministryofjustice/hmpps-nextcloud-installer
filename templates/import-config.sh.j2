@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Installing Nextcloud from config"
+cd {{ nextcloud_dir }}
+sudo -u {{ web_user }} php $OCC_CMD config:import $WEB_USER_HOME/{{ NEXTCLOUD_CONF }}
+touch /tmp/nxtcloud.installed
+echo "Nextcloud config install completed"

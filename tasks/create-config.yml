@@ -13,3 +13,8 @@
     src: "{{ role_path }}/templates/import-config.sh.j2"
     dest: "/root/import-config.sh"
     mode: u+x
+
+- name: Import our Nextcloud config
+  shell: /root/import-config.sh > /var/log/nextcloud-import.log
+  args:
+    creates: /var/log/nextcloud-import.log

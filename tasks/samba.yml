@@ -11,3 +11,9 @@
     name: "{{ report_user }}"
     groups: "{{ samba_group }}, {{ web_group }}"
     append: yes
+
+- name: Add samba group to our web user
+  user:
+    name: "{{ web_user }}"
+    groups: "{{ samba_group }}"
+    append: yes

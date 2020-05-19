@@ -8,7 +8,6 @@
 
 - name: Create our samba user
   user:
-    name: {{ report_user }}
-    groups: {{ samba_group }},{{ web_group }}
+    name: "{{ report_user }}"
+    groups: "{{ samba_group }}, {{ web_group }}"
     append: yes
-    uid: {{ report_user_uid }}

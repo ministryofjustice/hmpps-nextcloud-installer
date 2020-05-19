@@ -17,3 +17,20 @@
     name: "{{ web_user }}"
     groups: "{{ samba_group }}"
     append: yes
+
+- name: Create our samba pass script
+  template:
+    src: "{{ role_path }}/templates/samba-pass.sh.j2"
+    dest: "{{ samba_pass_sh_script }}"
+    mode: u+x
+
+- name: Create our dfree script
+  template:
+    src: "{{ role_path }}/templates/samba-dfree.j2"
+    dest: "{{ dfree_destination }}"
+    mode: u+x
+
+- name: Set our samba user pass
+  shell: "{{ samba_pass_sh_script }} > /var/log/samba-pass.log"
+  args:
+    creates: "/var/log/samba-pass.log"

@@ -2,11 +2,11 @@
 
 - name: create our CRC shared folders
   file:
-    path: /var/nextcloud/data/{{ nextcloud_admin }}/files/shared_files/CRC/{{ item }}
+    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
     state: directory
-    group: apache
+    group: "{{ web_group }}"
     mode: "0770"
-    owner: apache
+    owner: "{{ web_user }}"
     recurse: yes
   with_items:
     - 'bench'
@@ -35,11 +35,11 @@
 
 - name: create our NPS shared folders
   file:
-    path: /var/nextcloud/data/{{ nextcloud_admin }}/files/shared_files/NPS/{{ item }}
+    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}"
     state: directory
-    group: apache
+    group: "{{ web_group }}"
     mode: "0770"
-    owner: apache
+    owner: "{{ web_user }}"
     recurse: yes
   with_items:
     - 'NorthWest'
@@ -55,11 +55,11 @@
 
 - name: create our National shared folders
   file:
-    path: /var/nextcloud/data/{{ nextcloud_admin }}/files/shared_files/National/{{ item }}
+    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}"
     state: directory
-    group: apache
+    group: "{{ web_group }}"
     mode: "0770"
-    owner: apache
+    owner: "{{ web_user }}"
     recurse: yes
   with_items:
     - 'cfo'
@@ -67,11 +67,11 @@
 
 - name: create our other top level shared folders
   file:
-    path: /var/nextcloud/data/{{ nextcloud_admin }}/files/shared_files/{{ item }}
+    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}"
     state: directory
-    group: apache
+    group: "{{ web_group }}"
     mode: "0770"
-    owner: apache
+    owner: "{{ web_user }}"
     recurse: yes
   with_items:
     - 'nart'

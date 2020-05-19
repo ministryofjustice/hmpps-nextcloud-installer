@@ -4,17 +4,17 @@
   template:
     src: "{{ role_path }}/templates/nextcloud-conf.json.j2"
     dest: "/usr/share/httpd/nextcloud-conf.json"
-    owner: "apache"
+    owner: "{{ web_user }}"
     mode: "0644"
-    group: "apache"
+    group: "{{ web_group }}"
 
 - name: Create our Nextcloud importer script
   template:
     src: "{{ role_path }}/templates/import-config.sh.j2"
-    dest: "/root/import-config.sh"
+    dest: "{{ config_sh_script}}"
     mode: u+x
 
 - name: Import our Nextcloud config
-  shell: /root/import-config.sh > /var/log/nextcloud-import.log
+  shell: "{{ config_sh_script}} > /var/log/nextcloud-import.log"
   args:
     creates: /var/log/nextcloud-import.log

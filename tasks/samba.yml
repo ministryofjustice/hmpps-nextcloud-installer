@@ -34,3 +34,11 @@
   shell: "{{ samba_pass_sh_script }} > /var/log/samba-pass.log"
   args:
     creates: "/var/log/samba-pass.log"
+
+- name: Create our samba config file
+  template:
+    src: "{{ role_path }}/templates/smb.conf.j2"
+    dest: "{{ smb_conf_file }}"
+    owner: "root"
+    mode: "0644"
+    group: "root"

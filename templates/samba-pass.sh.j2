@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+REPORT_USER="{{ report_user }}"
+REPORT_USER_PASSWD="{{ report_user_pass }}"
+
+echo -ne "$REPORT_USER_PASSWD\n$REPORT_USER_PASSWD\n" | smbpasswd -a -s $REPORT_USER

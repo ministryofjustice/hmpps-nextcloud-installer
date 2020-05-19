@@ -1,0 +1,24 @@
+{% set crclist = [ bench,london] %}
+
+[global]
+        workgroup = WORKGROUP
+        netbios name = mis-samba
+        security = user
+        passdb backend = tdbsam
+        printing = cups
+        printcap name = cups
+        load printers = yes
+        cups options = raw
+        dfree command = "{{ dfree_destination }}"
+        dfree cache time = 60
+
+{% for item in crclist %}
+[{{ item }}-CRC]
+        comment = "{{ item }}-CRC Share"
+        path = "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes
+
+{% endfor %}

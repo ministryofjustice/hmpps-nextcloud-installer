@@ -1,0 +1,7 @@
+---
+
+- name: Create our samba group
+  group:
+    name:  smbgrp
+    state: present
+    gid: "10667"

@@ -8,3 +8,6 @@
 
 - name: Add our shared folders
   include: shared-folders.yml
+
+- name: Add our Samba services
+  include: samba.yml

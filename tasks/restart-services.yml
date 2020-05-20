@@ -1,0 +1,9 @@
+---
+
+- name: Restart service httpd and smb services
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - 'httpd'
+    - 'smb'

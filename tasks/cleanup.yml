@@ -1,0 +1,9 @@
+---
+
+- name: Cleanup our files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ import_config_file }}"
+    - "{{ samba_pass_sh_script }}"

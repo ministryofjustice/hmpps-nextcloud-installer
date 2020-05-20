@@ -11,3 +11,9 @@
 
 - name: Add our Samba services
   include: samba.yml
+
+- name: Restart httpd and smb services
+  include: restart-services.yml
+
+- name: Clean up our files
+  include: cleanup.yml

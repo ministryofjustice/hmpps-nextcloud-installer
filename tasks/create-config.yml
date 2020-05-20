@@ -3,7 +3,7 @@
 - name: Create our Nextcloud config file for import
   template:
     src: "{{ role_path }}/templates/nextcloud-conf.json.j2"
-    dest: "/usr/share/httpd/nextcloud-conf.json"
+    dest: "{{ import_config_file }}"
     owner: "{{ web_user }}"
     mode: "0644"
     group: "{{ web_group }}"

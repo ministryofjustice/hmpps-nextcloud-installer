@@ -42,3 +42,15 @@
     owner: "root"
     mode: "0644"
     group: "root"
+
+- name: Create our file ownership script
+  template:
+    src: "{{ role_path }}/templates/file-owner.sh.j2"
+    dest: "{{ fileowner_sh_script }}"
+    mode: u+x
+
+- name: Create our file ownership cron job"
+  cron:
+    name: "Take ownership of scheduled reports"
+    minute: "05"
+    job: "{{ fileowner_sh_script }}"

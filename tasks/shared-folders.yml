@@ -2,7 +2,7 @@
 
 - name: create our CRC shared folders
   file:
-    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
+    path: "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
     state: directory
     group: "{{ web_group }}"
     mode: "0770"
@@ -35,7 +35,7 @@
 
 - name: create our NPS shared folders
   file:
-    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}"
+    path: "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}"
     state: directory
     group: "{{ web_group }}"
     mode: "0770"
@@ -55,7 +55,7 @@
 
 - name: create our National shared folders
   file:
-    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}"
+    path: "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}"
     state: directory
     group: "{{ web_group }}"
     mode: "0770"
@@ -67,7 +67,7 @@
 
 - name: create our other top level shared folders
   file:
-    path: "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}"
+    path: "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}"
     state: directory
     group: "{{ web_group }}"
     mode: "0770"

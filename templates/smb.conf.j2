@@ -1,5 +1,7 @@
-{% set crclist = [ "bench", "london" ] %}
-
+{% set crclist = [ "bench", "bgsw", "cgm", "cl", "ddc", "dlnr", "dtv", "essex", "hampshire", "hlny", "kss", "london", "merseyside", "misc", "northumbria", "ns", "south-yorkshire", "swm", "thames", "wales", "west-yorkshire", "wwm" ] %}
+{% set npslist = [ "NorthWest", "NorthEast", "Wales", "Midlands", "SouthWestandSouthCentral", "SouthEastandEastern", "London", "EPP", "PPAS" ] %}
+{% set nationallist = [ "cfo", "wmt" ] %}
+{% set otherlist = [ "nart" ] %}
 [global]
         workgroup = WORKGROUP
         netbios name = mis-samba
@@ -13,9 +15,42 @@
         dfree cache time = 60
 
 {% for item in crclist %}
-[{{ item }}-CRC]
-        comment = "{{ item }}-CRC Share"
-        path = "{{ data_dir}}/{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
+[{{ item }}-crc]
+        comment = "{{ item }}-crc share"
+        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes
+
+{% endfor %}
+
+{% for item in npslist %}
+[{{ item }}-nps]
+        comment = "{{ item }}-nps share"
+        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}"
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes
+
+{% endfor %}
+
+{% for item in nationallist %}
+[{{ item }}]
+        comment = "{{ item }} share"
+        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}"
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes
+
+{% endfor %}
+
+{% for item in otherlist %}
+[{{ item }}]
+        comment = "{{ item }} share"
+        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}"
         valid users = @smbgrp
         guest ok = no
         writable = yes

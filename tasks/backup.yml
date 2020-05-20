@@ -16,3 +16,10 @@
     src: "{{ role_path }}/templates/backup.sh.j2"
     dest: "{{ backup_sh_script }}"
     mode: u+x
+
+- name: Backup nextcloud config and Themes"
+  cron:
+    name: "Backup Nextcloud Config, Config folder and themes"
+    minute: "01"
+    hour: "00"
+    job: "{{ backup_sh_script }}"

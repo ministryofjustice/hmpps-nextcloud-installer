@@ -16,8 +16,8 @@
         max log size = {{ max_log_size }}
 
 {% for item in crclist %}
-[{{ item }}-crc]
-        comment = {{ item }}-crc share
+[{{ item }}-CRC]
+        comment = {{ item }}-CRC Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}
         valid users = @smbgrp
         guest ok = no
@@ -27,8 +27,8 @@
 {% endfor %}
 
 {% for item in npslist %}
-[{{ item }}-nps]
-        comment = {{ item }}-nps share
+[{{ item }}-NPS]
+        comment = {{ item }}-NPS Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}
         valid users = @smbgrp
         guest ok = no
@@ -39,7 +39,7 @@
 
 {% for item in nationallist %}
 [{{ item }}]
-        comment = "{{ item }} share"
+        comment = {{ item }} Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}
         valid users = @smbgrp
         guest ok = no
@@ -50,7 +50,7 @@
 
 {% for item in otherlist %}
 [{{ item }}]
-        comment = "{{ item }} share"
+        comment = {{ item }} Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}
         valid users = @smbgrp
         guest ok = no

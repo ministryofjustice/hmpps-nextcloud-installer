@@ -1,0 +1,18 @@
+---
+
+- name: create our NC backup folder
+  file:
+    path: "{{ data_dir}}{{ item }}"
+    state: directory
+    group: root
+    mode: "0600"
+    owner: root
+    recurse: yes
+  with_items:
+    - 'nextcloud-backups'
+
+- name: Create our Nextcloud backup script
+  template:
+    src: "{{ role_path }}/templates/backup.sh.j2"
+    dest: "{{ backup_sh_script }}"
+    mode: u+x

@@ -1,23 +1,24 @@
 {% set crclist = [ "bench", "bgsw", "cgm", "cl", "ddc", "dlnr", "dtv", "essex", "hampshire", "hlny", "kss", "london", "merseyside", "misc", "northumbria", "ns", "south-yorkshire", "swm", "thames", "wales", "west-yorkshire", "wwm" ] %}
+
 {% set npslist = [ "NorthWest", "NorthEast", "Wales", "Midlands", "SouthWestandSouthCentral", "SouthEastandEastern", "London", "EPP", "PPAS" ] %}
+
 {% set nationallist = [ "cfo", "wmt" ] %}
+
 {% set otherlist = [ "nart" ] %}
 [global]
-        workgroup = WORKGROUP
-        netbios name = mis-samba
-        security = user
-        passdb backend = tdbsam
-        printing = cups
-        printcap name = cups
-        load printers = yes
-        cups options = raw
-        dfree command = "{{ dfree_destination }}"
-        dfree cache time = 60
+        workgroup = {{ workgroup }}
+        netbios name = {{ netbios_name}}
+        security = {{ security }}
+        passdb backend = {{ passdb_backend}}
+        dfree command = {{ dfree_destination }}
+        dfree cache time = {{ dfree_cache_time }}
+        log file = {{ smb_log_file }}
+        max log size = {{ max_log_size }}
 
 {% for item in crclist %}
 [{{ item }}-crc]
-        comment = "{{ item }}-crc share"
-        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}"
+        comment = {{ item }}-crc share
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}
         valid users = @smbgrp
         guest ok = no
         writable = yes
@@ -27,8 +28,8 @@
 
 {% for item in npslist %}
 [{{ item }}-nps]
-        comment = "{{ item }}-nps share"
-        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}"
+        comment = {{ item }}-nps share
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}
         valid users = @smbgrp
         guest ok = no
         writable = yes
@@ -39,7 +40,7 @@
 {% for item in nationallist %}
 [{{ item }}]
         comment = "{{ item }} share"
-        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}"
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}
         valid users = @smbgrp
         guest ok = no
         writable = yes
@@ -50,7 +51,7 @@
 {% for item in otherlist %}
 [{{ item }}]
         comment = "{{ item }} share"
-        path = "{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}"
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}
         valid users = @smbgrp
         guest ok = no
         writable = yes

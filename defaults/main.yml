@@ -1,0 +1,6 @@
+workgroup: "WORKGROUP"
+netbios_name: "mis-samba"
+security: "user"
+smb_log_file: "/var/log/samba/log.%m"
+dfree_cache_time: "60"
+max_log_size: "10000"

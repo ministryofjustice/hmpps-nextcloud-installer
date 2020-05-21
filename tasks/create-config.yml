@@ -11,10 +11,10 @@
 - name: Create our Nextcloud importer script
   template:
     src: "{{ role_path }}/templates/import-config.sh.j2"
-    dest: "{{ config_sh_script}}"
+    dest: "{{ config_sh_script }}"
     mode: u+x
 
 - name: Import our Nextcloud config
-  shell: "{{ config_sh_script}} > /var/log/nextcloud-import.log"
+  shell: "{{ config_sh_script }} > /var/log/nextcloud-import.log"
   args:
     creates: /var/log/nextcloud-import.log

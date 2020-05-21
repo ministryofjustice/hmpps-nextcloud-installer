@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+INPUT_FILE=$1
+nextcloud_url={{ local_url }}
+OCS_API={{ OCS_API }}
+NEXTCLOUD_USER={{ nextcloud_admin }}
+NEXTCLOUD_USER_PASS_PARAM={{ nextcloud_user_param }}
+NEXTCLOUD_USER_PASSWORD=$(aws ssm get-parameters --with-decryption --names $NEXTCLOUD_USER_PASS_PARAM --region eu-west-2 --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+
+
+#Create a share R/0
+for line in $(cat $INPUT_FILE) ;
+    do shareWith=$(echo $line | cut -f1 -d:) ;
+    path=$(echo $line | cut -f2 -d:) ;
+    permissions=$(echo $line | cut -f3 -d:);
+    echo "Granting Group:$shareWith Access to $path with permissions:$permissions" ;
+    curl -X POST -u "$NEXTCLOUD_USER:$NEXTCLOUD_USER_PASSWORD" $nextcloud_url/$OCS_API/shares -H "OCS-APIREQUEST:true"  -d "shareWith=$shareWith"   -d "path=$path"  -d "permissions=$permissions"  -d "shareType=1" ;
+done

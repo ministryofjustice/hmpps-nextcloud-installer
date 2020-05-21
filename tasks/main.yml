@@ -18,5 +18,8 @@
 - name: Create our NC Backups
   include: backup.yml
 
+- name: Configure our shared folders
+  include: configure-shares.yml
+
 - name: Clean up our files
   include: cleanup.yml

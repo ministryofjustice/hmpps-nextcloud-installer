@@ -16,5 +16,3 @@
 
 - name: Configure our shared folders
   shell: "{{ shares_script }} {{ input_file }} > /var/log/config-share.log"
-  args:
-    creates: /var/log/config-share.log

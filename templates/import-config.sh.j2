@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 cd {{ nextcloud_dir }}
+chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}
 sudo -u {{ web_user }} php occ   config:import   ~{{ web_user }}/{{ NEXTCLOUD_CONF }}
 sudo -u {{ web_user }} php occ app:enable user_ldap         #Enable Ldap App
 sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app

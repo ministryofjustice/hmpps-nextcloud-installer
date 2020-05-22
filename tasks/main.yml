@@ -1,5 +1,8 @@
 ---
 
+- name: Base install
+  include: base-install.yml
+  
 - name: Configure apache
   include: apache.yml
 

@@ -1,7 +1,7 @@
 {
     "system": {
-        "passwordsalt": "{{ nextcloud_passwordsalt }}",
-        "secret": "{{ nextcloud_secret }}",
+        "passwordsalt": "{{ nextcloud_passwordsalt.stdout }}",
+        "secret": "{{ nextcloud_secret.stdout }}",
         "trusted_domains": [
             "{{ app_name }}.{{ external_domain }}"
         ],
@@ -14,10 +14,10 @@
         "dbport": "",
         "dbtableprefix": "oc_",
         "mysql.utf8mb4": true,
-        "dbuser": "{{ nextcloud_dbuser }}",
-        "dbpassword": "{{ nextcloud_dbpassword }}",
+        "dbuser": "{{ nextcloud_dbuser.stdout }}",
+        "dbpassword": "{{ nextcloud_dbpassword.stdout }}",
         "installed": true,
-        "instanceid": "{{ instance_id }}",
+        "instanceid": "{{ nextcloud_id.stdout }}",
         "ldapIgnoreNamingRules": false,
         "ldapProviderFactory": "OCA\\User_LDAP\\LDAPProviderFactory",
         "overwritehost": "{{ app_name }}.{{ external_domain }}",
@@ -248,7 +248,7 @@
             "installed_version": "1.6.0",
             "s01_lastChange": "1589607346",
             "s01has_memberof_filter_support": "1",
-            "s01ldap_agent_password": "{{ nextcloud_s01ldap_agent_password }}",
+            "s01ldap_agent_password": "{{ nextcloud_s01ldap_agent_password.stdout }}",
             "s01ldap_base": "{{ fileshare_user_base }}\n{{ standard_user_base }}",
             "s01ldap_base_groups": "{{ fileshare_base_groups }}",
             "s01ldap_base_users": "{{ standard_user_base }}",

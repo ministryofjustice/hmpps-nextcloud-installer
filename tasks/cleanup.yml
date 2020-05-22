@@ -9,3 +9,4 @@
     - "{{ samba_pass_sh_script }}"
     - "{{ input_file }}"
     - "{{ shares_script }}"
+#    - "{{ base_install_script }}"

@@ -1,5 +1,35 @@
 ---
 
+- name: Pull nextcloud_passwordsalt
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_passwordsalt --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_passwordsalt
+
+
+- name: Pull nextcloud_secret
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_secret --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_secret
+
+
+- name: Pull nextcloud_dbuser
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_dbuser --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_dbuser
+
+
+- name: Pull nextcloud_dbpassword
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_dbpassword --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_dbpassword
+
+
+- name: Pull nextcloud_s01ldap_agent_password
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_s01ldap_agent_password
+
+
+- name: Pull nextcloud_id
+  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud-id --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: nextcloud_id
+
+
 - name: Create our Nextcloud config file for import
   template:
     src: "{{ role_path }}/templates/nextcloud-conf.json.j2"

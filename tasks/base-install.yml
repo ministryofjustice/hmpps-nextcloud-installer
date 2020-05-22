@@ -6,7 +6,7 @@
     dest: "{{ base_install_script }}"
     mode: u+x
 
-#- name: Perform base install
-#  shell: "{{ base_install_script }} > /var/log/base-install.log"
-#  args:
-#    creates: /var/log/base-install.log
+- name: Perform base install
+  shell: "{{ base_install_script }} > /var/log/base-install.log"
+  args:
+    creates: /var/log/base-install.log

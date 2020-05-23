@@ -2,7 +2,5 @@
 
 cd {{ nextcloud_dir }}
 chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}
+cp -P /var/tmp/nextcloud/data/.ocdata {{ data_dir }}
 sudo -u {{ web_user }} php occ   config:import   ~{{ web_user }}/{{ NEXTCLOUD_CONF }}
-sudo -u {{ web_user }} php occ app:enable user_ldap         #Enable Ldap App
-sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app
-sudo sed -i 's/memory_limit = 128M/memory_limit = 513M/' /etc/php.ini

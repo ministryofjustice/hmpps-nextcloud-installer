@@ -1,5 +1,3 @@
-cp -P /var/tmp/nextcloud/data/.ocdata /var/nextcloud/data/
-
 #!/usr/bin/env bash
 
 region="eu-west-2"
@@ -36,6 +34,7 @@ if [[ $nextcloud_passwordsalt = "ul" ]] && [[ $nextcloud_secret = "ul" ]] && [[ 
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapPort "$LDAP_PORT"
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapAgentName "$LDAP_USER"
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapAgentPassword "$LDAP_USER_PASS"
+   sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app
 
    #Get secrets from config and push to ssm and exit
    nextcloud_passwordsalt=$(sudo -u {{ web_user }} php occ config:list --private | grep  passwordsalt | cut -f4 -d'"')
@@ -57,4 +56,6 @@ else
    chown {{ web_user }}:{{ web_user }} $temp_data_dir
    cd {{ nextcloud_dir }}
    sudo -u {{ web_user }} php occ maintenance:install --database "sqlite" --admin-user "{{ installer_user }}" --admin-pass "{{ installer_user }}" --data-dir "$temp_data_dir"
+   sudo -u {{ web_user }} php occ app:enable user_ldap         #Enable Ldap App
+   sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app
 fi

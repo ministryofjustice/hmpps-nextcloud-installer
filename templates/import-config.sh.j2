@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 
 cd {{ nextcloud_dir }}
 chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}

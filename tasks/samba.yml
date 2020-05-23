@@ -6,9 +6,13 @@
     state: present
     gid: "{{ samba_group_gid }}"
 
+- name: Get our reportuser
+  shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-reports-admin-user --region eu-west-2 --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: report_user
+
 - name: Create our samba user
   user:
-    name: "{{ report_user }}"
+    name: "{{ report_user.stdout }}"
     groups: "{{ samba_group }}, {{ web_group }}"
     append: yes
 

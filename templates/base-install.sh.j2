@@ -1,3 +1,5 @@
+cp -P /var/tmp/nextcloud/data/.ocdata /var/nextcloud/data/
+
 #!/usr/bin/env bash
 
 region="eu-west-2"
@@ -9,7 +11,7 @@ nextcloud_s01ldap_agent_password=$(aws ssm get-parameters --with-decryption --na
 nextcloud_instance_id=$(aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud-id --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 temp_data_dir="/var/tmp/nextcloud/data"
 NEXTCLOUD_DB_PASS=$(aws ssm get-parameters --with-decryption --names {{ nextcloud_rds_db_param }} --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
-NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region ""$region"" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 LDAP_HOST={{ ldap_host }}
 LDAP_PORT={{ ldap_port}}
 LDAP_USER={{ ldap_user }}
@@ -28,6 +30,8 @@ if [[ $nextcloud_passwordsalt = "ul" ]] && [[ $nextcloud_secret = "ul" ]] && [[ 
 
    #Configure ldap authentication
    sudo -u {{ web_user }} php occ app:enable user_ldap         #Enable Ldap App
+   sudo -u {{ web_user }} php occ ldap:delete-config s01
+   sudo -u {{ web_user }} php occ ldap:create-empty-config
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapHost "$LDAP_HOST"
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapPort "$LDAP_PORT"
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapAgentName "$LDAP_USER"

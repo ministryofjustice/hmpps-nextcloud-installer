@@ -9,4 +9,4 @@ sudo -u {{ web_user }} php occ   config:import   ~{{ web_user }}/{{ NEXTCLOUD_CO
 
 export OC_PASS="$NEXTCLOUD_ADMIN_PASSWORD"
 su -s /bin/sh {{ web_user }} -c "php occ user:resetpassword --password-from-env {{ nextcloud_admin }}"
-systemctl start httpd && systemctl stop httpd
+#systemctl start httpd && systemctl stop httpd

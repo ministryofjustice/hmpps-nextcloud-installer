@@ -38,6 +38,22 @@
     mode: "0644"
     group: "{{ web_group }}"
 
+- name: Create our data directory
+  file:
+    path: "{{ data_dir}}"
+    state: directory
+    group: "{{ web_group }}"
+    mode: "0770"
+    owner: "{{ web_user }}"
+
+- name: Create our ocdata file
+  file:
+    path: "{{ data_dir}}.ocdata"
+    state: touch
+    group: "{{ web_group }}"
+    mode: "0644"
+    owner: "{{ web_user }}"
+
 - name: Create our Nextcloud importer script
   template:
     src: "{{ role_path }}/templates/import-config.sh.j2"

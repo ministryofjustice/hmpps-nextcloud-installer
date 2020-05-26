@@ -18,6 +18,7 @@
         "dbpassword": "{{ nextcloud_dbpassword.stdout }}",
         "installed": true,
         "instanceid": "{{ nextcloud_id.stdout }}",
+        "lost_password_link": "https:\/\/{{ pwm_url }}\/",
         "ldapIgnoreNamingRules": false,
         "ldapProviderFactory": "OCA\\User_LDAP\\LDAPProviderFactory",
         "overwritehost": "{{ app_name }}.{{ external_domain }}",

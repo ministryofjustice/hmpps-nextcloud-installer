@@ -19,6 +19,8 @@
         "installed": true,
         "instanceid": "{{ nextcloud_id.stdout }}",
         "lost_password_link": "https:\/\/{{ pwm_url }}\/",
+        "session_lifetime": "43200",
+        "session_keepalive": false,
         "ldapIgnoreNamingRules": false,
         "ldapProviderFactory": "OCA\\User_LDAP\\LDAPProviderFactory",
         "overwritehost": "{{ app_name }}.{{ external_domain }}",

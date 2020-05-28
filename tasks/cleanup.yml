@@ -10,3 +10,5 @@
     - "{{ input_file }}"
     - "{{ shares_script }}"
     - "{{ base_install_script }}"
+    - "{{ cw_installer }}"
+    - "{{ cw_conf_template }}"

@@ -1,5 +1,5 @@
 ---
-
+  
 - name: Restart service httpd and smb services
   service:
     name: "{{ item }}"
@@ -7,3 +7,4 @@
   with_items:
     - 'httpd'
     - 'smb'
+    - 'awslogs'

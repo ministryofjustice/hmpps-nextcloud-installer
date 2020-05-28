@@ -2,7 +2,7 @@
 
 - name: Base install
   include: base-install.yml
-  
+
 - name: Configure apache
   include: apache.yml
 
@@ -14,6 +14,9 @@
 
 - name: Add our Samba services
   include: samba.yml
+
+- name: Install and configure CW Agent
+  include: cwagent.yml
 
 - name: Restart httpd and smb services
   include: restart-services.yml

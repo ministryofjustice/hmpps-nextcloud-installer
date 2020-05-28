@@ -59,7 +59,7 @@
     path: "/var/log/nextcloud"
     state: directory
     group: "{{ web_group }}"
-    mode: "0640"
+    mode: "0740"
     owner: "{{ web_user }}"
     recurse: yes
 

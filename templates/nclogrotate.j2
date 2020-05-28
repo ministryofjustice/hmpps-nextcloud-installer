@@ -1,0 +1,11 @@
+/var/log/{{ app_name }}/{{ app_name }}.log {
+    size 10M
+    rotate 5
+    missingok
+    compress
+    notifempty
+    copytruncate
+    dateext
+    dateformat %s
+    daily
+}

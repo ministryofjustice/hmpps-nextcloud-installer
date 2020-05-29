@@ -13,11 +13,12 @@
         dfree command = {{ dfree_destination }}
         dfree cache time = {{ dfree_cache_time }}
         log file = {{ smb_log_file }}
+        log level = 3
         max log size = {{ max_log_size }}
 
 {% for item in crclist %}
-[{{ item }}-CRC]
-        comment = {{ item }}-CRC Share
+[CRC-{{ item }}]
+        comment = CRC-{{ item }} Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}
         valid users = @smbgrp
         guest ok = no
@@ -27,8 +28,8 @@
 {% endfor %}
 
 {% for item in npslist %}
-[{{ item }}-NPS]
-        comment = {{ item }}-NPS Share
+[NPS-{{ item }}]
+        comment = NPS-{{ item }} Share
         path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}
         valid users = @smbgrp
         guest ok = no

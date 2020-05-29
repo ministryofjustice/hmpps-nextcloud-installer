@@ -32,7 +32,9 @@
   template:
     src: "{{ role_path }}/templates/samba-dfree.j2"
     dest: "{{ dfree_destination }}"
-    mode: u+x
+    owner: "root"
+    mode: "0755"
+    group: "root"
 
 - name: Set our samba user pass
   shell: "{{ samba_pass_sh_script }} > /var/log/samba-pass.log"

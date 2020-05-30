@@ -35,6 +35,8 @@ if [[ $nextcloud_passwordsalt = "ul" ]] && [[ $nextcloud_secret = "ul" ]] && [[ 
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapAgentName "$LDAP_USER"
    sudo -u {{ web_user }} php occ ldap:set-config s01 ldapAgentPassword "$LDAP_USER_PASS"
    sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app
+   sudo -u {{ web_user }} php occ app:enable files_automatedtagging
+   sudo -u {{ web_user }} php occ app:enable files_retention
 
    #Get secrets from config and push to ssm and exit
    nextcloud_passwordsalt=$(sudo -u {{ web_user }} php occ config:list --private | grep  passwordsalt | cut -f4 -d'"')
@@ -58,4 +60,6 @@ else
    sudo -u {{ web_user }} php occ maintenance:install --database "sqlite" --admin-user "{{ installer_user }}" --admin-pass "{{ installer_user }}" --data-dir "$temp_data_dir"
    sudo -u {{ web_user }} php occ app:enable user_ldap         #Enable Ldap App
    sudo -u {{ web_user }} php occ app:enable twofactor_totp    #Enable 2f app
+   sudo -u {{ web_user }} php occ app:enable files_automatedtagging
+   sudo -u {{ web_user }} php occ app:enable files_retention 
 fi

@@ -1,61 +1,18 @@
-{% set crclist = [ "bench", "bgsw", "cgm", "cl", "ddc", "dlnr", "dtv", "essex", "hampshire", "hlny", "kss", "london", "merseyside", "misc", "northumbria", "ns", "south-yorkshire", "swm", "thames", "wales", "west-yorkshire", "wwm" ] %}
-
-{% set npslist = [ "NorthWest", "NorthEast", "Wales", "Midlands", "SouthWestandSouthCentral", "SouthEastandEastern", "London", "EPP", "PPAS" ] %}
-
-{% set nationallist = [ "cfo", "wmt" ] %}
-
-{% set otherlist = [ "nart" ] %}
 [global]
         workgroup = {{ workgroup }}
         netbios name = {{ netbios_name}}
         security = {{ security }}
-        passdb backend = {{ passdb_backend}}
+        passdb backend = {{ passdb_backend }}
         dfree command = {{ dfree_destination }}
         dfree cache time = {{ dfree_cache_time }}
         log file = {{ smb_log_file }}
         log level = 3
         max log size = {{ max_log_size }}
 
-{% for item in crclist %}
-[CRC-{{ item }}]
-        comment = CRC-{{ item }} Share
-        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}
+[Secure]
+        comment = {{ app_name }} File Share
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}
         valid users = @smbgrp
         guest ok = no
         writable = yes
         browsable = yes
-
-{% endfor %}
-
-{% for item in npslist %}
-[NPS-{{ item }}]
-        comment = NPS-{{ item }} Share
-        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}
-        valid users = @smbgrp
-        guest ok = no
-        writable = yes
-        browsable = yes
-
-{% endfor %}
-
-{% for item in nationallist %}
-[{{ item }}]
-        comment = {{ item }} Share
-        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}
-        valid users = @smbgrp
-        guest ok = no
-        writable = yes
-        browsable = yes
-
-{% endfor %}
-
-{% for item in otherlist %}
-[{{ item }}]
-        comment = {{ item }} Share
-        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}
-        valid users = @smbgrp
-        guest ok = no
-        writable = yes
-        browsable = yes
-
-{% endfor %}

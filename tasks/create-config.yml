@@ -1,34 +1,28 @@
 ---
 
-- name: Pull nextcloud_passwordsalt
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_passwordsalt --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_passwordsalt
+- name: Set nextcloud_secret ssm fact
+  set_fact:
+    nextcloud_secret: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_secret', decrypt=True, region='{{ region }}') }}"
 
+- name: Set nextcloud_passwordsalt ssm fact
+  set_fact:
+    nextcloud_passwordsalt: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_passwordsalt', decrypt=True, region='{{ region }}') }}"
 
-- name: Pull nextcloud_secret
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_secret --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_secret
+- name: Set nextcloud_dbuser ssm fact
+  set_fact:
+    nextcloud_dbuser: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbuser', decrypt=True, region='{{ region }}') }}"
 
+- name: Set nextcloud_dbpassword ssm fact
+  set_fact:
+    nextcloud_dbpassword: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbpassword', decrypt=True, region='{{ region }}') }}"
 
-- name: Pull nextcloud_dbuser
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_dbuser --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_dbuser
+- name: Set nextcloud_s01ldap_agent_password ssm fact
+  set_fact:
+    nextcloud_s01ldap_agent_password: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password', decrypt=True, region='{{ region }}') }}"
 
-
-- name: Pull nextcloud_dbpassword
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_dbpassword --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_dbpassword
-
-
-- name: Pull nextcloud_s01ldap_agent_password
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_s01ldap_agent_password
-
-
-- name: Pull nextcloud_id
-  shell: aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud-id --region "eu-west-2" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
-  register: nextcloud_id
-
+- name: Set nextcloud_id ssm fact
+  set_fact:
+    nextcloud_id: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud-id', decrypt=True, region='{{ region }}') }}"
 
 - name: Create our Nextcloud config file for import
   template:

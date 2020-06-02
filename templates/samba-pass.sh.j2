@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-REPORT_USER_PASSWD="$(aws ssm get-parameters --with-decryption --names {{ reports_pass_name }} --region eu-west-2 --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')"
+REPORT_USER_PASSWD="$(aws ssm get-parameters --with-decryption --names {{ reports_pass_name }} --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')"
 echo -ne "$REPORT_USER_PASSWD\n$REPORT_USER_PASSWD\n" | smbpasswd -a -s {{ report_user.stdout }}

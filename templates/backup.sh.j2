@@ -6,7 +6,7 @@ CONFIG_DIR="/root/${DATE}-${INSTANCE_ID}"
 ZIP_DIR="${DATE}-${INSTANCE_ID}"
 CONFIG_EXPORT_FILE="$DATE-nextcloud-config.json"
 CONFIG_PASSW={{ config_passw }}
-CONFIG_PASS=$(aws ssm get-parameters --with-decryption --names $CONFIG_PASSW --region eu-west-2 --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+CONFIG_PASS=$(aws ssm get-parameters --with-decryption --names $CONFIG_PASSW --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 NEXT_CLOUD_DIR={{ nextcloud_dir }}
 BACKUP_DATA_DIR="{{ data_dir }}nextcloud-backups"
 

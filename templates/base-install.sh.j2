@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-region="eu-west-2"
+region="{{ region }}"
 nextcloud_passwordsalt=$(aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_passwordsalt --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 nextcloud_secret=$(aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_secret --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 nextcloud_dbuser=$(aws ssm get-parameters --with-decryption --names {{ nextcloud_ssm_path }}/nextcloud_dbuser --region "$region" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')

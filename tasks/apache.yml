@@ -1,0 +1,19 @@
+---
+
+- name: Create our apache config files
+  template:
+    src: "{{ role_path }}/templates/apache-nextcloud.conf"
+    dest: "{{ nc_conf_destination }}"
+    owner: "root"
+    mode: "0644"
+    group: "root"
+
+- name: Configure apache to log source IP Addresses
+  replace:
+    path: "{{ httpd_conf_file }}"
+    regexp: 'LogFormat "\%h'
+    replace: 'LogFormat "%{X-Forwarded-For}i %h'
+    mode: "0644"
+    owner: root
+    group: root
+    backup: yes

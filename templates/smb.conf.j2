@@ -1,0 +1,18 @@
+[global]
+        workgroup = {{ workgroup }}
+        netbios name = {{ netbios_name}}
+        security = {{ security }}
+        passdb backend = {{ passdb_backend }}
+        dfree command = {{ dfree_destination }}
+        dfree cache time = {{ dfree_cache_time }}
+        log file = {{ smb_log_file }}
+        log level = 3
+        max log size = {{ max_log_size }}
+
+[Secure]
+        comment = {{ app_name }} File Share
+        path = {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}
+        valid users = @smbgrp
+        guest ok = no
+        writable = yes
+        browsable = yes

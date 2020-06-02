@@ -1,0 +1,19 @@
+---
+
+- name: Download CW agent installer
+  get_url:
+    url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    dest: "{{ cw_installer }}"
+
+- name: Create our CW agent conf template
+  template:
+    src: "{{ role_path }}/templates/cwconf.j2"
+    dest: "{{ cw_conf_template }}"
+
+- name: Perform CW-agent install
+  shell: "python {{ cw_installer }} -n -c {{ cw_conf_template }} -r {{ region }} > /var/log/cw-agent-install.log"
+  args:
+    creates: /var/log/cw-agent-install.log
+
+- name: Enable CW-agent service
+  shell: "chkconfig awslogs on"

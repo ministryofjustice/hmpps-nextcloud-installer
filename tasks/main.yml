@@ -1,0 +1,31 @@
+---
+
+- name: Base install
+  include: base-install.yml
+
+- name: Configure apache
+  include: apache.yml
+
+- name: Add our nextcloud config
+  include: create-config.yml
+
+- name: Add our shared folders
+  include: shared-folders.yml
+
+- name: Add our Samba services
+  include: samba.yml
+
+- name: Install and configure CW Agent
+  include: cwagent.yml
+
+- name: Restart httpd and smb services
+  include: restart-services.yml
+
+- name: Create our NC Backups
+  include: backup.yml
+
+- name: Configure our shared folders
+  include: configure-shares.yml
+
+- name: Clean up our files
+  include: cleanup.yml

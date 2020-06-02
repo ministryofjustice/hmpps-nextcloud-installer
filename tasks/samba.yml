@@ -1,0 +1,62 @@
+---
+
+- name: Create our samba group
+  group:
+    name: "{{ samba_group }}"
+    state: present
+    gid: "{{ samba_group_gid }}"
+
+- name: Get our reportuser
+  shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-reports-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: report_user
+
+- name: Create our samba user
+  user:
+    name: "{{ report_user.stdout }}"
+    groups: "{{ samba_group }}, {{ web_group }}"
+    append: yes
+
+- name: Add samba group to our web user
+  user:
+    name: "{{ web_user }}"
+    groups: "{{ samba_group }}"
+    append: yes
+
+- name: Create our samba pass script
+  template:
+    src: "{{ role_path }}/templates/samba-pass.sh.j2"
+    dest: "{{ samba_pass_sh_script }}"
+    mode: u+x
+
+- name: Create our dfree script
+  template:
+    src: "{{ role_path }}/templates/samba-dfree.j2"
+    dest: "{{ dfree_destination }}"
+    owner: "root"
+    mode: "0755"
+    group: "root"
+
+- name: Set our samba user pass
+  shell: "{{ samba_pass_sh_script }} > /var/log/samba-pass.log"
+  args:
+    creates: "/var/log/samba-pass.log"
+
+- name: Create our samba config file
+  template:
+    src: "{{ role_path }}/templates/smb.conf.j2"
+    dest: "{{ smb_conf_file }}"
+    owner: "root"
+    mode: "0644"
+    group: "root"
+
+- name: Create our file ownership script
+  template:
+    src: "{{ role_path }}/templates/file-owner.sh.j2"
+    dest: "{{ fileowner_sh_script }}"
+    mode: u+x
+
+- name: Create our file ownership cron job"
+  cron:
+    name: "Take ownership of scheduled reports"
+    minute: "*/5"
+    job: "{{ fileowner_sh_script }}"

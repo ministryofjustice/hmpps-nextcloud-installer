@@ -1,0 +1,77 @@
+---
+
+- name: Set nextcloud_secret ssm fact
+  set_fact:
+    nextcloud_secret: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_secret', decrypt=True, region='eu-west-2') }}"
+
+- name: Set nextcloud_passwordsalt ssm fact
+  set_fact:
+    nextcloud_passwordsalt: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_passwordsalt', decrypt=True, region='eu-west-2') }}"
+
+- name: Set nextcloud_dbuser ssm fact
+  set_fact:
+    nextcloud_dbuser: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbuser', decrypt=True, region='eu-west-2') }}"
+
+- name: Set nextcloud_dbpassword ssm fact
+  set_fact:
+    nextcloud_dbpassword: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbpassword', decrypt=True, region='eu-west-2') }}"
+
+- name: Set nextcloud_s01ldap_agent_password ssm fact
+  set_fact:
+    nextcloud_s01ldap_agent_password: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password', decrypt=True, region='eu-west-2') }}"
+
+- name: Set nextcloud_id ssm fact
+  set_fact:
+    nextcloud_id: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud-id', decrypt=True, region='eu-west-2') }}"
+
+- name: Create our Nextcloud config file for import
+  template:
+    src: "{{ role_path }}/templates/nextcloud-conf.json.j2"
+    dest: "{{ import_config_file }}"
+    owner: "{{ web_user }}"
+    mode: "0644"
+    group: "{{ web_group }}"
+
+- name: Create our data directory
+  file:
+    path: "{{ data_dir}}"
+    state: directory
+    group: "{{ web_group }}"
+    mode: "0770"
+    owner: "{{ web_user }}"
+
+- name: Create our ocdata file
+  file:
+    path: "{{ data_dir}}.ocdata"
+    state: touch
+    group: "{{ web_group }}"
+    mode: "0644"
+    owner: "{{ web_user }}"
+
+- name: create NC log directory
+  file:
+    path: "/var/log/nextcloud"
+    state: directory
+    group: "{{ web_group }}"
+    mode: "0740"
+    owner: "{{ web_user }}"
+    recurse: yes
+
+- name: Create our Nextcloud logrotate conf
+  template:
+    src: "{{ role_path }}/templates/nclogrotate.j2"
+    dest: "/etc/logrotate.d/{{ app_name }}"
+    owner: "root"
+    mode: "0644"
+    group: "root"
+
+- name: Create our Nextcloud importer script
+  template:
+    src: "{{ role_path }}/templates/import-config.sh.j2"
+    dest: "{{ config_sh_script }}"
+    mode: u+x
+
+- name: Import our Nextcloud config
+  shell: "{{ config_sh_script }} > /var/log/nextcloud-import.log"
+  args:
+    creates: /var/log/nextcloud-import.log

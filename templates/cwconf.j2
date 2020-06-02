@@ -1,0 +1,17 @@
+{% set logfilelist = [{'access_log': '/var/log/httpd/access_log', 'error_log': '/var/log/httpd/error_log'}, {'log.smbd': '/var/log/samba/log.smbd', 'nextcloud.log': '/var/log/nextcloud/nextcloud.log'}] %}
+
+[general]
+state_file = /var/awslogs/state/agent-state
+
+{% for dict_item in logfilelist %}
+{% for key, value in dict_item.items() %}
+[{{ value }}]
+datetime_format = %Y-%m-%d %H:%M:%S
+file = {{ value }}
+buffer_duration = 5000
+log_stream_name = {instance_id}
+initial_position = start_of_file
+log_group_name = /{{ env_type }}/{{ app_name }}/{{ key }}
+
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+INSTANCE_ID="`curl http://169.254.169.254/latest/meta-data/instance-id`"
+DATE=$(date +%F)
+CONFIG_DIR="/root/${DATE}-${INSTANCE_ID}"
+ZIP_DIR="${DATE}-${INSTANCE_ID}"
+CONFIG_EXPORT_FILE="$DATE-nextcloud-config.json"
+CONFIG_PASSW={{ config_passw }}
+CONFIG_PASS=$(aws ssm get-parameters --with-decryption --names $CONFIG_PASSW --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+NEXT_CLOUD_DIR={{ nextcloud_dir }}
+BACKUP_DATA_DIR="{{ data_dir }}nextcloud-backups"
+
+mkdir $CONFIG_DIR
+cd $NEXT_CLOUD_DIR
+sudo -u {{ web_user }} php occ config:list --private > $CONFIG_DIR/$CONFIG_EXPORT_FILE
+cp -r $NEXT_CLOUD_DIR/config $CONFIG_DIR/
+cp -r $NEXT_CLOUD_DIR/themes $CONFIG_DIR/
+
+cd /root ;
+zip -r --encrypt -P "$CONFIG_PASS" $CONFIG_DIR.zip $ZIP_DIR
+rm -rf $CONFIG_DIR
+
+cp $CONFIG_DIR.zip $BACKUP_DATA_DIR
+rm -rf $CONFIG_DIR.zip

@@ -1,0 +1,18 @@
+---
+
+- name: Create our configure share script
+  template:
+    src: "{{ role_path }}/templates/configure-shares.sh.j2"
+    dest: "{{ shares_script }}"
+    mode: u+x
+
+- name: Create our shares input file
+  template:
+    src: "{{ role_path }}/templates/input-file.j2"
+    dest: "{{ input_file }}"
+    owner: "root"
+    mode: "0600"
+    group: "root"
+
+- name: Configure our shared folders
+  shell: "{{ shares_script }} {{ input_file }} > /var/log/config-share.log"

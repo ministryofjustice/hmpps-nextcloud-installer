@@ -2,27 +2,27 @@
 
 - name: Set nextcloud_secret ssm fact
   set_fact:
-    nextcloud_secret: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_secret', decrypt=True, region='{{ region }}') }}"
+    nextcloud_secret: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_secret', decrypt=True, region='eu-west-2') }}"
 
 - name: Set nextcloud_passwordsalt ssm fact
   set_fact:
-    nextcloud_passwordsalt: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_passwordsalt', decrypt=True, region='{{ region }}') }}"
+    nextcloud_passwordsalt: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_passwordsalt', decrypt=True, region='eu-west-2') }}"
 
 - name: Set nextcloud_dbuser ssm fact
   set_fact:
-    nextcloud_dbuser: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbuser', decrypt=True, region='{{ region }}') }}"
+    nextcloud_dbuser: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbuser', decrypt=True, region='eu-west-2') }}"
 
 - name: Set nextcloud_dbpassword ssm fact
   set_fact:
-    nextcloud_dbpassword: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbpassword', decrypt=True, region='{{ region }}') }}"
+    nextcloud_dbpassword: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_dbpassword', decrypt=True, region='eu-west-2') }}"
 
 - name: Set nextcloud_s01ldap_agent_password ssm fact
   set_fact:
-    nextcloud_s01ldap_agent_password: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password', decrypt=True, region='{{ region }}') }}"
+    nextcloud_s01ldap_agent_password: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud_s01ldap_agent_password', decrypt=True, region='eu-west-2') }}"
 
 - name: Set nextcloud_id ssm fact
   set_fact:
-    nextcloud_id: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud-id', decrypt=True, region='{{ region }}') }}"
+    nextcloud_id: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/nextcloud-id', decrypt=True, region='eu-west-2') }}"
 
 - name: Create our Nextcloud config file for import
   template:

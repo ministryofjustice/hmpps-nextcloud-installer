@@ -3,10 +3,14 @@
         netbios name = {{ netbios_name}}
         security = {{ security }}
         passdb backend = {{ passdb_backend }}
+        printing = cups
+        printcap name = cups
+        load printers = yes
+        cups options = raw
         dfree command = {{ dfree_destination }}
         dfree cache time = {{ dfree_cache_time }}
         log file = {{ smb_log_file }}
-        log level = 3
+        log level = 1
         max log size = {{ max_log_size }}
 
 [Secure]

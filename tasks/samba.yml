@@ -9,11 +9,23 @@
   shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-reports-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
   register: report_user
 
+
+
+
+- name: Get our misuser
+  shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-mis-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: mis_user
+
 - name: Create our samba user
   user:
-    name: "{{ report_user.stdout }}"
+    name: "{{ item }}"
     groups: "{{ samba_group }}, {{ web_group }}"
     append: yes
+  with_items:
+    - "{{ report_user.stdout }}"
+    - "{{ mis_user.stdout}}"
+
+
 
 - name: Add samba group to our web user
   user:

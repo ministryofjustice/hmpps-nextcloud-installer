@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-chown -R {{ web_user }}:{{ web_user }} {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}
+
+cd {{ data_dir }}{{ nextcloud_admin }}/{{ share_files_root }}
+GLOBIGNORE={{ globignore }}
+rm -rf -v *
+unset GLOBIGNORE
+chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}{{ nextcloud_admin }}/{{ share_files_root }}
 chmod -R 0770 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}
 /usr/bin/sudo -u {{ web_user }} php {{ nextcloud_dir }}/occ  files:scan {{ nextcloud_admin }}

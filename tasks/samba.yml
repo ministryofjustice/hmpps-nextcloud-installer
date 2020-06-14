@@ -71,4 +71,4 @@
   cron:
     name: "Take ownership of scheduled reports"
     minute: "*/5"
-    job: "{{ fileowner_sh_script }}"
+    job: "/usr/bin/flock -n {{ data_dir }}lock/file-owner.sh.lock {{ fileowner_sh_script }}"

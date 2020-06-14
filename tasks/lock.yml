@@ -1,0 +1,12 @@
+---
+
+- name: create our lock folder
+  file:
+    path: "{{ data_dir}}{{ item }}"
+    state: directory
+    group: root
+    mode: "0644"
+    owner: root
+    recurse: yes
+  with_items:
+    - 'lock'

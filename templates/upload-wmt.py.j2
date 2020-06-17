@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+from azure.storage.file import FileService
+from azure.storage.file import ContentSettings
+
+file_list = ['WMT N01.xlsx', 'WMT N02.xlsx',  'WMT N03.xlsx',  'WMT N04.xlsx',  'WMT N05.xlsx',  'WMT N06.xlsx',  'WMT N07.xlsx']
+
+file_service = FileService(account_name='{{ wmt_account }}', account_key='{{ wmt_account_key }}')
+
+for upload_file in file_list:
+  file_service.create_file_from_path(
+    'wmt-prd-sftp',
+    None,
+    upload_file,
+    '{{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/wmt/' + upload_file,
+    content_settings=ContentSettings(content_type='binary'))

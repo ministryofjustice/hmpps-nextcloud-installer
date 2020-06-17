@@ -12,6 +12,9 @@
 - name: Add our shared folders
   include: shared-folders.yml
 
+- name: Add our lock folder
+  include: lock.yml
+
 - name: Add our Samba services
   include: samba.yml
 
@@ -23,6 +26,9 @@
 
 - name: Create our NC Backups
   include: backup.yml
+
+- name: Create our upload_wmt.py script and cron
+  include: wmt_upload.yml
 
 - name: Configure our shared folders
   include: configure-shares.yml

@@ -51,7 +51,7 @@
     - 'London'
     - 'EPP'
     - 'PPAS'
-
+    - 'GreaterManchester'
 
 - name: create our National shared folders
   file:

@@ -15,14 +15,25 @@
     src: "{{ role_path }}/templates/upload-wmt.py.j2"
     dest: "/usr/local/sbin/upload_wmt.py"
     owner: "root"
-    mode: "0644"
+    mode: "u+x"
     group: "root"
   when: env_type == "prod"
 
-- name: Create our upload cron job"
+- name: Create our upload cron job
   cron:
     name: "Upload WMT Files to Kainos"
     minute: "20"
     hour: "05"
     job: "/usr/bin/flock -n {{ data_dir }}lock/upload_wmt.py.lock /usr/local/sbin/upload_wmt.py"
+  when: env_type == "prod"
+
+- name: Install Azure Storage file
+  pip:
+    name: azure-storage-file
+  when: env_type == "prod"
+
+- name: Add sftp server to hosts files
+  lineinfile:
+    path: /etc/hosts
+    line: "51.141.15.114 wmt-prd-sftp"
   when: env_type == "prod"

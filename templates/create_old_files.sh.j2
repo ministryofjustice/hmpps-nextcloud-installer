@@ -1,0 +1,30 @@
+{% set crclist = [ "bench", "bgsw", "cgm", "cl", "ddc", "dlnr", "dtv", "essex", "hampshire", "hlny", "kss", "london", "merseyside", "misc", "northumbria", "ns", "south-yorkshire", "swm", "thames", "wales", "west-yorkshire", "wwm" ] %}
+{% set npslist = [ "NorthWest", "NorthEast", "Wales", "Midlands", "SouthWestandSouthCentral", "SouthEastandEastern", "London", "EPP", "PPAS", "GreaterManchester" ] %}
+{% set nationallist = [ "cfo", "wmt" ] %}
+{% set otherlist = [ "nart" ] %}
+#!/usr/bin/env bash
+
+{% for item in crclist %}
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/tgs.txt
+mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/inner_folder
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/inner_folder/tgs.txt
+
+{% endfor %}
+
+{% for item in npslist %}
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/tgs.txt
+mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/inner_folder
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/inner_folder/tgs.txt
+{% endfor %}
+
+{% for item in nationallist %}
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/tgs.txt
+mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/inner_folder
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/inner_folder/tgs.txt
+{% endfor %}
+
+{% for item in otherlist %}
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/tgs.txt
+mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/inner_folder
+touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/inner_folder/tgs.txt
+{% endfor %}

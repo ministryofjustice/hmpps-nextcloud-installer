@@ -30,6 +30,9 @@
 - name: Create our upload_wmt.py script and cron
   include: wmt_upload.yml
 
+- name: Create our retention script and cron
+  include: retention.yml
+  
 - name: Configure our shared folders
   include: configure-shares.yml
 

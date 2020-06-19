@@ -5,6 +5,14 @@
         "trusted_domains": [
             "{{ app_name }}.{{ external_domain }}"
         ],
+        "trusted_proxies": [
+        "{{ cidr_block_a }}",
+        "{{ cidr_block_b }}",
+        "{{ cidr_block_c }}"
+        ],
+        "forwarded_for_headers": [
+            "HTTP_X_FORWARDED_FOR"
+        ],
         "datadirectory": "\/var\/{{ app_name }}\/data",
         "dbtype": "mysql",
         "version": "16.0.3.0",

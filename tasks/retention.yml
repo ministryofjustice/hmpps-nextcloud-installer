@@ -15,6 +15,6 @@
 
 - name: Create TEMP FILES TEST
   template:
-    src: "{{ role_path }}/templates/temp_create_old_files.sh.j2"
+    src: "{{ role_path }}/templates/create_old_files.sh.j2"
     dest: "/root/temp_create_old_files.sh"
     mode: u+x

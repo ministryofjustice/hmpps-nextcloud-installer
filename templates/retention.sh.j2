@@ -5,21 +5,21 @@
 #!/usr/bin/env bash
 
 {% for item in crclist %}
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/* -mtime +30 -exec rm {} \;
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/* -type d -empty -delete
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/* -mtime +30 -exec rm {} \;      > /dev/null  2>&1
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/* -type d -empty -delete         > /dev/null  2>&1
 {% endfor %}
 
 {% for item in npslist %}
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/* -mtime +30 -exec rm {} \;
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/* -type d -empty -delete
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/* -mtime +30 -exec rm {} \;      > /dev/null  2>&1
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/* -type d -empty -delete         > /dev/null  2>&1
 {% endfor %}
 
 {% for item in nationallist %}
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/* -mtime +30 -exec rm {} \;
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/* -type d -empty -delete
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/* -mtime +30 -exec rm {} \; > /dev/null  2>&1
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/* -type d -empty -delete    > /dev/null  2>&1
 {% endfor %}
 
 {% for item in otherlist %}
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/* -mtime +30 -exec rm {} \;
-find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/* -type d -empty -delete
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/* -mtime +30 -exec rm {} \;          > /dev/null  2>&1
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/* -type d -empty -delete             > /dev/null  2>&1
 {% endfor %}

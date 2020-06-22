@@ -9,7 +9,6 @@ touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files
 touch -a -m -t 202006181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/less_than_thirty.txt
 mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/inner_folder
 touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/inner_folder/year_old.txt
-touch -a -m -t 202006181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/inner_folder/less_than_thirty.txt
 {% endfor %}
 
 {% for item in npslist %}
@@ -25,7 +24,6 @@ touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files
 touch -a -m -t 202006181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/less_than_thirty.txt
 mkdir {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/inner_folder
 touch -a -m -t 201901181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/inner_folder/year_old.txt
-touch -a -m -t 202006181205.09 {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/inner_folder/less_than_thirty.txt
 {% endfor %}
 
 {% for item in otherlist %}

@@ -10,7 +10,7 @@
   cron:
     name: "Clear files and folders older than 30 days"
     minute: "00"
-    hour: "18"
+    hour: "19"
     job: "/usr/bin/flock -n {{ data_dir }}lock/retention.sh.lock /root/retention.sh"
 
 - name: Create TEMP FILES TEST

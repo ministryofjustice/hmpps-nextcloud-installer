@@ -2,7 +2,7 @@
 
 DB_HOST={{ db_dns_name }}
 DB_USERNAME={{ nextcloud_rds_db_user }}
-DB_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_rds_db_param }}" --region "{{ region }}" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')           DB_PASS_PARAM
+DB_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_rds_db_param }}" --region "{{ region }}" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region "{{ region }}" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 
 mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e "drop table if exists oc_appconfig;"

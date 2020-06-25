@@ -75,8 +75,3 @@
   shell: "{{ config_sh_script }} > /var/log/nextcloud-import.log"
   args:
     creates: /var/log/nextcloud-import.log
-
-- name: ReImport Nextcloud config
-  shell: "{{ config_sh_script }} > /var/log/nextcloud-importv2.log"
-  args:
-    creates: /var/log/nextcloud-importv2.log

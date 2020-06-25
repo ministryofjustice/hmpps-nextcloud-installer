@@ -9,7 +9,7 @@ echo "Dropping oc_appconfig table"
 mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e "drop table if exists oc_appconfig;" || exit 1
 
 echo "Creating oc_appconfig table"
-mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e 'CREATE TABLE oc_appconfig (appid VARCHAR(32) NOT NULL DEFAULT "", configkey VARCHAR(64) NOT NULL DEFAULT "", configvalue longtext NULL, PRIMARY KEY(appid, configkey));'' || exit 1
+mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e 'CREATE TABLE oc_appconfig (appid VARCHAR(32) NOT NULL DEFAULT "", configkey VARCHAR(64) NOT NULL DEFAULT "", configvalue longtext NULL, PRIMARY KEY(appid, configkey));' || exit 1
 
 cd {{ nextcloud_dir }}
 chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}

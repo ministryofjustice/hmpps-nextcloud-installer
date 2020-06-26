@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
+DB_HOST={{ db_dns_name }}
+DB_USERNAME={{ nextcloud_rds_db_user }}
+DB_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_rds_db_param }}" --region "{{ region }}" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
 NEXTCLOUD_ADMIN_PASSWORD=$(aws ssm get-parameters --with-decryption --names "{{ nextcloud_user_param }}" --region "{{ region }}" --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')
+
+echo "Dropping oc_appconfig table"
+mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e "drop table if exists oc_appconfig;" || exit 1
+
+echo "Creating oc_appconfig table"
+mysql -h $DB_HOST -u $DB_USERNAME -p"$DB_PASSWORD" {{ app_name }} -e 'CREATE TABLE oc_appconfig (appid VARCHAR(32) NOT NULL DEFAULT "", configkey VARCHAR(64) NOT NULL DEFAULT "", configvalue longtext NULL, PRIMARY KEY(appid, configkey));' || exit 1
 
 cd {{ nextcloud_dir }}
 chown -R {{ web_user }}:{{ web_user }} {{ data_dir }}
 sudo -u {{ web_user }} php occ   config:import   ~{{ web_user }}/{{ NEXTCLOUD_CONF }}
-
 export OC_PASS="$NEXTCLOUD_ADMIN_PASSWORD"
 su -s /bin/sh {{ web_user }} -c "php occ user:resetpassword --password-from-env {{ nextcloud_admin }}"

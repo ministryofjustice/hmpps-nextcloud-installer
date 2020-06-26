@@ -3,12 +3,12 @@
 - name: Set accoumt name ssm fact
   set_fact:
     wmt_account: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/wmt-account', decrypt=True, region='eu-west-2') }}"
-  when: env_type == "mis-dev"
+  when: env_type == "prod"
 
 - name: Set account key ssm fact
   set_fact:
     wmt_account_key: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/wmt-account-key', decrypt=True, region='eu-west-2') }}"
-  when: env_type == "mis-dev"
+  when: env_type == "prod"
 
 - name: Create our upload_wmt.py script
   template:
@@ -17,7 +17,7 @@
     owner: "root"
     mode: "u+x"
     group: "root"
-  when: env_type == "mis-dev"
+  when: env_type == "prod"
 
 - name: Create our upload cron job
   cron:
@@ -25,15 +25,15 @@
     minute: "20"
     hour: "05"
     job: "/usr/bin/flock -n {{ data_dir }}lock/upload_wmt.py.lock /usr/local/sbin/upload_wmt.py"
-  when: env_type == "mis-dev"
+  when: env_type == "prod"
 
 - name: Install Azure Storage file
   pip:
     name: azure-storage-file
-  when: env_type == "mis-dev"
+  when: env_type == "prod"
 
 - name: Add sftp server to hosts files
   lineinfile:
     path: /etc/hosts
     line: "51.141.15.114 wmt-prd-sftp"
-  when: env_type == "mis-dev"
+  when: env_type == "prod"

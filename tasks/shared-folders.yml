@@ -45,13 +45,14 @@
     - 'NorthWest'
     - 'NorthEast'
     - 'Wales'
-    - 'Midlands'
     - 'SouthWestandSouthCentral'
     - 'SouthEastandEastern'
     - 'London'
     - 'EPP'
     - 'PPAS'
     - 'GreaterManchester'
+    - 'WestMidlands'
+    - 'EastMidlands'
 
 - name: create our National shared folders
   file:

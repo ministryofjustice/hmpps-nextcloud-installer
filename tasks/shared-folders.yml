@@ -53,6 +53,11 @@
     - 'GreaterManchester'
     - 'WestMidlands'
     - 'EastMidlands'
+    - 'YorkshireandHumberside'
+    - 'EastofEngland'
+    - 'KentSurreyandSussex'
+    - 'SouthWest'
+    - 'SouthCentral'
 
 - name: create our National shared folders
   file:

@@ -1,0 +1,21 @@
+{% set crclist = [ "bench", "bgsw", "cgm", "cl", "ddc", "dlnr", "dtv", "essex", "hampshire", "hlny", "kss", "london", "merseyside", "misc", "northumbria", "ns", "south-yorkshire", "swm", "thames", "wales", "west-yorkshire", "wwm" ] %}
+{% set npslist = [ "EastMidlands", "EastofEngland", "EPP", "GreaterManchester", "KentSurreyandSussex", "London", "NorthEast", "NorthWest", "PPAS", "SouthCentral", "SouthEastandEastern", "SouthWest", "SouthWestandSouthCentral", "Wales", "WestMidlands", "YorkshireandHumberside" ] %}
+{% set nationallist = [ "cfo", "wmt" ] %}
+{% set otherlist = [ "nart" ] %}
+#!/usr/bin/env bash
+
+{% for item in crclist %}
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/CRC/{{ item }}/* -mtime +35 -exec rm {} \;      > /dev/null  2>&1
+{% endfor %}
+
+{% for item in npslist %}
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/NPS/{{ item }}/* -mtime +35 -exec rm {} \;      > /dev/null  2>&1
+{% endfor %}
+
+{% for item in nationallist %}
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/{{ item }}/* -mtime +35 -exec rm {} \; > /dev/null  2>&1
+{% endfor %}
+
+{% for item in otherlist %}
+find {{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/{{ item }}/* -mtime +35 -exec rm {} \;          > /dev/null  2>&1
+{% endfor %}

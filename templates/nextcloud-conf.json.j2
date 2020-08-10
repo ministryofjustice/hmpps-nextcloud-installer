@@ -26,7 +26,11 @@
         "dbpassword": "{{ nextcloud_dbpassword }}",
         "installed": true,
         "instanceid": "{{ nextcloud_id }}",
+{% if env_type == "pre-prod" %}
         "lost_password_link": "https:\/\/{{ pwm_url }}\/public\/forgottenpassword",
+{%- else %}
+        "lost_password_link": "https:\/\/{{ strategic_pwm_url }}\/public\/forgottenpassword",
+{%- endif %}
         "session_lifetime": "43200",
         "session_keepalive": false,
         "ldapIgnoreNamingRules": false,

@@ -1,0 +1,7 @@
+---
+
+- name: Create our upgrade install script
+  template:
+    src: "{{ role_path }}/templates/nextcloud-upgrade.sh.j2"
+    dest: "/root/nextcloud-upgrade.sh"
+    mode: u+x

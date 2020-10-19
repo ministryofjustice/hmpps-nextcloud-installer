@@ -32,6 +32,9 @@
 
 - name: Create our retention script and cron
   include: retention.yml
+
+- name: Create nextcloud upgrade script
+  include: upgrade.yml
   
 - name: Configure our shared folders
   include: configure-shares.yml

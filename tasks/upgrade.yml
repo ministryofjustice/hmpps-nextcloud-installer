@@ -6,11 +6,8 @@
     dest: "/root/nextcloud-upgrade.sh"
     mode: u+x
 
-##Temp for test
-- name: Create our Nextcloud config file for import
+- name: Create our dbfix script
   template:
-    src: "{{ role_path }}/templates/V16nextcloud-conf.json.j2"
-    dest: "/usr/share/httpd/V16nextcloud-conf.json"
-    owner: "{{ web_user }}"
-    mode: "0644"
-    group: "{{ web_group }}"
+    src: "{{ role_path }}/templates/db-fix.sh.j2"
+    dest: "/root/db-fix.sh"
+    mode: u+x

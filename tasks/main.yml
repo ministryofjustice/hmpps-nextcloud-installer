@@ -21,6 +21,9 @@
 - name: Install and configure CW Agent
   include: cwagent.yml
 
+- name: Add opcache config
+  include: opcache.yml
+
 - name: Restart httpd and smb services
   include: restart-services.yml
 
@@ -35,7 +38,7 @@
 
 - name: Create nextcloud upgrade script
   include: upgrade.yml
-  
+
 - name: Configure our shared folders
   include: configure-shares.yml
 

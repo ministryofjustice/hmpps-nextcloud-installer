@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+proceed=$1
+
+if [[ $proceed != "proceed" ]]; then
+    echo '--------------------------------------------------------------------------------------------------------'
+    echo "Usage $0 proceed"
+    echo "Exiting ..."
+    echo '--------------------------------------------------------------------------------------------------------'
+    exit 1
+else
+    cd {{ nextcloud_dir }}
+    ###Fix The database is missing some indexes
+    echo "Fixing the database missing indexes"
+    echo '--------------------------------------------------------------------------------------------------------'
+    echo "sudo -u {{ web_user }} php occ db:add-missing-indices"
+    sleep 5
+    sudo -u {{ web_user }} php occ db:add-missing-indices
+
+    ###Fix The database is missing some optional columns
+    echo "Fixing the database missing optional columns"
+    echo '--------------------------------------------------------------------------------------------------------'
+    echo "sudo -u {{ web_user }} php occ db:add-missing-columns"
+    sleep 5
+    sudo -u {{ web_user }} php occ db:add-missing-columns
+
+    ##Fix Some columns in the database are missing a conversion to big int
+    echo "Fixing columns in the database that are missing a conversion to big int"
+    echo '--------------------------------------------------------------------------------------------------------'
+    echo "sudo -u {{ web_user }} php occ db:convert-filecache-bigint"
+    sleep 5
+    sudo -u {{ web_user }} php occ db:convert-filecache-bigint
+fi

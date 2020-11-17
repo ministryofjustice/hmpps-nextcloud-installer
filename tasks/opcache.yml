@@ -1,0 +1,14 @@
+---
+
+- name: Remove old opcache ini file
+  file:
+    path: /etc/php.d/10-opcache.ini
+    state: absent
+
+- name: Create our opcache ini file
+  template:
+    src: "{{ role_path }}/templates/10-opcache.ini.j2"
+    dest: /etc/php.d/10-opcache.ini
+    owner: "root"
+    mode: "0644"
+    group: "root"

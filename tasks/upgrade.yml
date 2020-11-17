@@ -1,0 +1,13 @@
+---
+
+- name: Create our upgrade install script
+  template:
+    src: "{{ role_path }}/templates/nextcloud-upgrade.sh.j2"
+    dest: "/root/nextcloud-upgrade.sh"
+    mode: u+x
+
+- name: Create our dbfix script
+  template:
+    src: "{{ role_path }}/templates/db-fix.sh.j2"
+    dest: "/root/db-fix.sh"
+    mode: u+x

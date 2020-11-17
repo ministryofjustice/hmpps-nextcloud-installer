@@ -26,7 +26,7 @@
 
 - name: Create our Nextcloud config file for import
   template:
-    src: "{{ role_path }}/templates/nextcloud-conf.json.j2"
+    src: "{{ role_path }}/templates/V20nextcloud-conf.json.j2"
     dest: "{{ import_config_file }}"
     owner: "{{ web_user }}"
     mode: "0644"

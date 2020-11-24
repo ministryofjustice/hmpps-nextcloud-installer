@@ -56,6 +56,8 @@
     - 'KentSurreyandSussex'
     - 'SouthWest'
     - 'SouthCentral'
+    - 'IDC'
+    - 'NSD'
 
 - name: create our National shared folders
   file:

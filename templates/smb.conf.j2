@@ -14,6 +14,8 @@
         max log size = {{ max_log_size }}
         inherit owner = yes
         force create mode = 0770
+        force user = {{ web_user }}
+        force group = {{ web_user }}
 
 [Secure]
         comment = {{ app_name }} File Share

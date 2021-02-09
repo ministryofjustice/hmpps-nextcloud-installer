@@ -12,6 +12,9 @@
         log file = {{ smb_log_file }}
         log level = 1
         max log size = {{ max_log_size }}
+        force create mode = 0770
+        force user = {{ web_user }}
+        force group = {{ web_user }}
 
 [Secure]
         comment = {{ app_name }} File Share

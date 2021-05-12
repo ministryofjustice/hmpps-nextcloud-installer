@@ -14,7 +14,7 @@
   register: mis_user
 
 - name: Get our service user
-  shell: aws ssm get-parameters --names /{{ hmpps_environment }}/{{ mis_app_name }}-service-accounts/SVC_BOSSO-NDL/SVC_BOSSO-NDL_username --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  shell: aws ssm get-parameters --names /{{ hmpps_environment }}/delius/{{ mis_app_name }}-service-accounts/SVC_BOSSO-NDL/SVC_BOSSO-NDL_username --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
   register: bosso_svc_user
 
 - name: Create our samba user

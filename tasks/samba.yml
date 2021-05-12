@@ -5,13 +5,17 @@
     name: "{{ samba_group }}"
     state: present
 
-- name: Get our reportuser
+- name: Get our report user
   shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-reports-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
   register: report_user
 
 - name: Get our misuser
-  shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-mis-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  shell: aws ssm get-parameters --names {{ hmpps_stack_name }}-{{ mis_app_name }}-admin-user --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
   register: mis_user
+
+- name: Get our service user
+  shell: aws ssm get-parameters --names /{{ hmpps_environment }}/{{ mis_app_name }}-service-accounts/SVC_BOSSO-NDL/SVC_BOSSO-NDL_username --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:'
+  register: bosso_svc_user
 
 - name: Create our samba user
   user:
@@ -21,6 +25,7 @@
   with_items:
     - "{{ report_user.stdout }}"
     - "{{ mis_user.stdout}}"
+    - "{{ bosso_svc_user.stdout }}"
 
 - name: Add samba group to our web user
   user:

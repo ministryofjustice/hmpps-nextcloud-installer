@@ -2,5 +2,8 @@
 
 REPORT_USER_PASSWD="$(aws ssm get-parameters --with-decryption --names {{ reports_pass_name }} --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')"
 MIS_USER_PASSWD="$(aws ssm get-parameters --with-decryption --names {{ mis_user_pass_name }} --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')"
+BOSSO_SVC_USER_PASSWD="$(aws ssm get-parameters --with-decryption --names {{ bosso_svc_passname }} --region {{ region }} --query "Parameters[0]"."Value" | sed 's:^.\(.*\).$:\1:')"
+
 echo -ne "$REPORT_USER_PASSWD\n$REPORT_USER_PASSWD\n" | smbpasswd -a -s {{ report_user.stdout }}
 echo -ne "$MIS_USER_PASSWD\n$MIS_USER_PASSWD\n" | smbpasswd -a -s {{ mis_user.stdout }}
+echo -ne "$BOSSO_SVC_USER_PASSWD\n$BOSSO_SVC_USER_PASSWD\n" | smbpasswd -a -s {{ bosso_svc_user.stdout }}

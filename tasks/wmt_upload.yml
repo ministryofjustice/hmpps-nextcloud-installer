@@ -76,4 +76,6 @@
     minute: "20"
     hour: "05"
     job: "/usr/bin/flock -n {{ data_dir }}lock/s3_upload_wmt.sh.lock /usr/local/sbin/s3_upload_wmt.sh"
+    state: present
+    disabled: yes
   when: env_type == "mis-dev"

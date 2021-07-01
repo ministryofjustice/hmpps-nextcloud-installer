@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 WMT_EXTRACTS={{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/wmt/
-CLOUD_PLATFORM_BUCKET=tf-eu-west-2-hmpps-delius-mis-dev-nextcloud-backups
+CLOUD_PLATFORM_BUCKET={{ wmt_bucket_name }}
 LOG="/var/log/wmt/wmt.log"
-WMT_BUCKET={{ wmt_bucket_name }}
 
 log_operation ()
 {

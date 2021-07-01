@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+WMT_EXTRACTS={{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/wmt/
+CLOUD_PLATFORM_BUCKET=tf-eu-west-2-hmpps-delius-mis-dev-nextcloud-backups
+LOG="/var/log/wmt/wmt.log"
+
+log_operation ()
+{
+    echo "[$(date +%Y-%m-%d-%H-%M-%S)] [INFO] [Host: $HOSTNAME]  [WMT Extracts upload $1 to s3://$CLOUD_PLATFORM_BUCKET/extract]" >> $LOG
+}
+
+aws s3 sync --only-show-errors  ${WMT_EXTRACTS}/   S3://${CLOUD_PLATFORM_BUCKET}/extract/ --acl bucket-owner-full-control  && log_operation Success || log_operation Failure

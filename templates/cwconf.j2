@@ -1,4 +1,4 @@
-{% set logfilelist = [{'access_log': '/var/log/httpd/access_log', 'error_log': '/var/log/httpd/error_log'}, {'log.smbd': '/var/log/samba/log.smbd', 'nextcloud.log': '/var/log/nextcloud/nextcloud.log'}] %}
+{% set logfilelist = [{'access_log': '/var/log/httpd/access_log', 'error_log': '/var/log/httpd/error_log'}, {'log.smbd': '/var/log/samba/log.smbd', 'nextcloud.log': '/var/log/nextcloud/nextcloud.log'}, {'wmt_log': '/var/log/wmt/wmt.log'}] %}
 
 [general]
 state_file = /var/awslogs/state/agent-state

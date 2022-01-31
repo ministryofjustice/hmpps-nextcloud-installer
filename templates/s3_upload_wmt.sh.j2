@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 WMT_EXTRACTS={{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/wmt/
-CLOUD_PLATFORM_BUCKET_PROD={{ wmt_bucket_name_prod }}
-CLOUD_PLATFORM_BUCKET_PRE_PROD={{ wmt_bucket_name_pre_prod }}
+CLOUD_PLATFORM_BUCKET_PROD={{ wmt_prod_bucket }}
+CLOUD_PLATFORM_BUCKET_PRE_PROD={{ wmt_pre_prod_bucket }}
 LOG="/var/log/wmt/wmt.log"
 
 log_operation ()

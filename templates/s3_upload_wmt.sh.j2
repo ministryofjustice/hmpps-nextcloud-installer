@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-
 WMT_EXTRACTS={{ data_dir}}{{ nextcloud_admin }}/{{ share_files_root }}/National/wmt/
-CLOUD_PLATFORM_BUCKET={{ wmt_bucket_name }}
+CLOUD_PLATFORM_BUCKET_PROD={{ wmt_bucket_name_prod }}
+CLOUD_PLATFORM_BUCKET_PRE_PROD={{ wmt_bucket_name_pre_prod }}
 LOG="/var/log/wmt/wmt.log"
 
 log_operation ()
 {
-    echo "[$(date +%Y-%m-%d-%H-%M-%S)] [INFO] [Host: $HOSTNAME]  [WMT Extracts upload $1 to s3://$CLOUD_PLATFORM_BUCKET/extract]" >> $LOG
+    echo "[$(date +%Y-%m-%d-%H-%M-%S)] [INFO] [Host: $HOSTNAME]  [WMT Extracts upload $1 to s3://${2}/extract]" >> $LOG
 }
 
-aws s3 sync --only-show-errors  ${WMT_EXTRACTS}  s3://${CLOUD_PLATFORM_BUCKET}/extract/ --acl bucket-owner-full-control  && log_operation Success || log_operation Failure
+aws s3 sync --only-show-errors  ${WMT_EXTRACTS}  s3://${CLOUD_PLATFORM_BUCKET_PROD}/extract/ --acl bucket-owner-full-control      && log_operation Success $CLOUD_PLATFORM_BUCKET_PROD     || log_operation Failure $CLOUD_PLATFORM_BUCKET_PROD
+aws s3 sync --only-show-errors  ${WMT_EXTRACTS}  s3://${CLOUD_PLATFORM_BUCKET_PRE_PROD}/extract/ --acl bucket-owner-full-control  && log_operation Success $CLOUD_PLATFORM_BUCKET_PRE_PROD || log_operation Failure $CLOUD_PLATFORM_BUCKET_PRE_PROD

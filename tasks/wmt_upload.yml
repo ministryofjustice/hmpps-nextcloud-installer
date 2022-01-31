@@ -1,6 +1,6 @@
 ---
 
-- name: Set accoumt name ssm fact
+- name: Set account name ssm fact
   set_fact:
     wmt_account: "{{ lookup('aws_ssm', '{{nextcloud_ssm_path }}/wmt-account', decrypt=True, region='eu-west-2') }}"
   when: env_type == "prod"
